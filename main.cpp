@@ -5,6 +5,7 @@
 #include <exception>
 #include <string>
 #include <cerrno>
+#include <cmath>
 
 
 using std::cout;
@@ -30,6 +31,8 @@ class GenericException : public exception
         }
 };
 
+
+
 typedef struct monitor_info_struct
 {
   private:
@@ -53,13 +56,15 @@ public:
 
     void calculateMonitorValues()
     {
-
+        float pixel_size = diagonal / sqrt( (pixles_width * pixles_width) + (pixles_hight * pixles_hight));
+        monitor_hight = pixel_size * pixles_hight;
+        monitor_width = pixel_size * pixles_width;
     }
 
     void print(bool verbose = false)
     {
         cout << "Monitor hight:    " << monitor_hight << endl;
-        cout << "Monitor width:    " << monitor_hight << endl;
+        cout << "Monitor width:    " << monitor_width << endl;
         cout << "Monitor diagonal: " << diagonal << endl;
         cout << "Pixles hight:     " << pixles_hight << endl;
         cout << "Pixles width:     " << pixles_width << endl;
